@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@mui/material';
-import MainPage from './pages/MainPage';
+import MainPage from './pages/mainPage/MainPage';
 import { theme } from './theme/customeTheme';
 import './App.css';
 

@@ -1,13 +1,13 @@
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
-  direction: 'rtl', // Set direction to RTL
+  direction: 'rtl', 
   palette: {
     primary: {
-      main: '#9c41ff', // Custom primary color
+      main: '#9c41ff', 
     },
     secondary: {
-      main: '#f8f9fa', // Custom secondary color
+      main: '#f8f9fa', 
     },
     success: {
         main: '#c2f8cb',
@@ -19,11 +19,11 @@ const theme = createTheme({
       main: "#d6d640",
     },
     background: {
-      default: '#f4f4f4', // Custom background color
+      default: '#f4f4f4', 
     },
   },
   typography: {
-    fontFamily: 'Heebo, Arial, sans-serif', // Custom font family
+    fontFamily: 'Heebo, Arial, sans-serif', 
   },
 });
 

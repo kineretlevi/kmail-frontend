@@ -1,43 +1,43 @@
 const paperStyle = {
-    width: 250, 
+    width: "13vw", 
     maxWidth: '100%', 
-    height: "80vh", 
+    height: "90vh", 
     marginTop: "3vh", 
-    marginLeft: "2vw"
+    marginLeft: "2vw",
+}
+
+const boxStyle = {
+    height: "60px"
 }
 
 const iconBtnStyle = {
     display: "flex",
     justifyContent: 'flex-start',
+    marginTop: "10px",
+    marginBottom: 0
 }
 
-const containedBtnStyle = {
+const btnStyle = {
     marginTop: '30px',
     marginBottom: '30px',
-    width: "100%", 
-    height: "10vh", 
-    minHeight: "60px", 
-    borderRadius: "12px",
+    width: "90%", 
+    height: "8.2vh", 
+    borderRadius: "30px",
     justifyContent: 'flex-start',
     paddingLeft: 2, 
     gap: 2, 
+    fontSize: "0.8rem"
 }
 
-const outlinedBtnStyle = {
-    marginTop: '30px',
-    marginBottom: '30px',
-    width: "100%", 
-    height: "6vh", 
-    minHeight: "30px", 
-    borderRadius: "12px",
-    justifyContent: 'flex-start',
-    paddingLeft: 2, 
-    gap: 2, 
+const arrowBackIconStyle = {
+    height: "30px", 
+    width: "30px"
 }
 
 export {
     paperStyle,
-    containedBtnStyle,
-    outlinedBtnStyle,
-    iconBtnStyle
+    boxStyle,
+    btnStyle,
+    iconBtnStyle,
+    arrowBackIconStyle
 }

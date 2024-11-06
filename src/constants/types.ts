@@ -1,7 +1,7 @@
 export type emailStructure = {
     id: string,
     sender: string,
-    reciever: string,
+    receiver: string,
     subject: string,
     body: string,
     createdAt: Date,

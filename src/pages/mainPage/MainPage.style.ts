@@ -1,6 +1,5 @@
 const boxStyle = {
-    textAlign: 'center', 
-    width: '65%'
+    display: "flex", flexDirection: "row"
 }
 
 export {
