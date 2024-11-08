@@ -24,4 +24,5 @@ export type userDetailes = {
 export type contactDetails = {
     id: string,
     name: string,
+    createdAt: Date
 }
