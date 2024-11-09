@@ -7,9 +7,8 @@ import { AppDispatch } from '../store'
 export const fetchContactsData = () => {
     return async(dispatch: AppDispatch) => {
         const fetchContacts = async(): Promise<contactDetails[]> => {
-            const res = await contactRequest.getAllContact()
-            console.log("res", res)
-            
+            const res = await contactRequest.getAllContact();
+                        
             if (res.status !== 200) {
                 throw new Error('Could not fetch contact details')
             }
@@ -19,7 +18,6 @@ export const fetchContactsData = () => {
 
         try {
             const contactsData = await fetchContacts();
-            console.log( "contactsData",contactsData)
             dispatch(updateContactsState(contactsData))
             dispatch(updateUiState({
                 status: "success",

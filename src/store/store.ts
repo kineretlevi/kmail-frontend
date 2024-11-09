@@ -1,13 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 import contactsReducer from './slices/contacts.slice';
 import emailsReducer from './slices/emails.slice';
-import uiReducer from './slices/ui.slice'
+import uiReducer from './slices/ui.slice';
+import pageReducer from './slices/page.slice';
+import emailDetailsReducer from './slices/emailDetails.slice';
+
 
 const store = configureStore({
   reducer: {
     contacts: contactsReducer,
     emails: emailsReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    page: pageReducer,
+    emailDetails: emailDetailsReducer
   },
 });
 

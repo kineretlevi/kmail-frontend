@@ -2,7 +2,6 @@ import axios from 'axios';
 import { attachedFiles } from '../constants/types';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL || ""
-console.log("SERVER_URL", SERVER_URL)
 
 export const axiosInstance = axios.create({
   baseURL: SERVER_URL,
@@ -14,8 +13,14 @@ export const axiosInstance = axios.create({
 
 // Objects to define all the axios requests to the server divided by entities.
 const emailsRequests = {
-    getEmails: async ()  => {
-      return axiosInstance.get('/api/get-emails');
+    getAllEmails: async (user: string)  => {
+      return axiosInstance.get(`/api/get-emails/${user}`);
+    },
+    getAllSentEmails: async (user: string)  => {
+      return axiosInstance.get(`/api/get-emails/sent/${user}`);
+    },
+    getAllReceivedEmails: async (user: string)  => {
+      return axiosInstance.get(`/api/get-emails/received/${user}`);
     },
     addNewEmail: async (sender: string, receiver: string, subject: string, body: string, files: attachedFiles[])  => {
       return axiosInstance.post('/api/add-email', 
@@ -28,14 +33,6 @@ const emailsRequests = {
         }
       );
     },
-    // func2: async (attributes) => {
-    //     return axiosInstance.post('/api/route', 
-    //         {
-    //           paramName1: param1,
-    //           paramName2: param2,
-    //         },
-    //     );
-    // },
 }
 
 const contactRequest = {

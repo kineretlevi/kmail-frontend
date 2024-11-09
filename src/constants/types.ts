@@ -5,13 +5,13 @@ export type emailStructure = {
     subject: string,
     body: string,
     createdAt: Date,
-    attachedFiles: attachedFiles[]
+    attachedFile: attachedFiles[]
 }
 
 export type attachedFiles = {
     id: string,
-    name: string,
-    file: string
+    filename: string,
+    fileContent: Buffer
 }
 
 export type userDetailes = {
@@ -26,3 +26,5 @@ export type contactDetails = {
     name: string,
     createdAt: Date
 }
+
+export type pageType = "All" | "Sent" | "Received" | "Contacts" | "New Email" | "Email"
