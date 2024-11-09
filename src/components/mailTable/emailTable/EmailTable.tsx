@@ -1,39 +1,18 @@
-import {
-  Table, TableBody, TableContainer, TableHead, Paper,
-} from '@mui/material';
-import { emailStructure } from '../../../constants/types';
-import EmailsTableHeader from '../emailsTableHeader/EmailsTableHeader';
-import EmailRecord from '../emailRecord/EmailRecord';
-import * as sxStyles from './EmailTable.style';
+import { useEffect } from 'react'
+import { Table, TableBody, TableContainer, TableHead, Paper, TableCell, Typography, TableRow } from '@mui/material'
+import { emailStructure } from '../../../constants/types'
+import EmailsTableHeader from '../emailsTableHeader/EmailsTableHeader'
+import EmailRecord from '../emailRecord/EmailRecord'
+import * as sxStyles from '../muiTableStyle/MuiTable.style'
 
-interface IEmailTable {}
+interface IEmailTableProps {
+  emails: emailStructure[]
+}
 
-const emails: emailStructure[] = [
-  {
-    id: '1',
-    sender: 'john@example.com',
-    receiver: 'jane@example.com',
-    subject: 'Project Update',
-    body: 'Here is the latest update on the project...',
-    createdAt: new Date(),
-    attachedFiles: [{ id: '1', name: 'project-update.pdf', file: 'file-data' }],
-  },
-  {
-    id: '2',
-    sender: 'alice@example.com',
-    receiver: 'bob@example.com',
-    subject: 'Meeting Agenda',
-    body: 'Please find the agenda attached...',
-    createdAt: new Date(),
-    attachedFiles: [
-      { id: '2', name: 'agenda.pdf', file: 'file-data' },
-      { id: '3', name: 'notes.txt', file: 'file-data' },
-      { id: '4', name: 'notes.txt', file: 'file-data' }
-      ],
-    },
-  ];
-
-const EmailTable: React.FC<IEmailTable> = () => {
+const EmailTable: React.FC<IEmailTableProps> = ({ emails }) => {
+  useEffect(() => {
+    console.log('emails', emails)
+  })
   return (
     <TableContainer component={Paper} sx={sxStyles.tableContainerStyle}>
       <Table>
@@ -41,13 +20,19 @@ const EmailTable: React.FC<IEmailTable> = () => {
           <EmailsTableHeader />
         </TableHead>
         <TableBody>
-          {emails.map((email: emailStructure) => (
-            <EmailRecord email={email} key={email.id}/>
-          ))}
+          {emails.length === 0 ? (
+            <TableRow>
+              <TableCell>
+                <Typography>There are no messages to show!</Typography>
+              </TableCell>
+            </TableRow>
+          ) : (
+            emails.map((email: emailStructure) => <EmailRecord email={email} key={email.id} />)
+          )}
         </TableBody>
       </Table>
     </TableContainer>
-  );
+  )
 }
 
 export default EmailTable
