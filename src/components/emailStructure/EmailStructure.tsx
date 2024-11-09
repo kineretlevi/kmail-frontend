@@ -1,6 +1,6 @@
 import { Autocomplete, Box, Button, TextField, Typography } from '@mui/material'
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded'
-import { emailStructure } from '../../constants/types'
+import { appUser, emailStructure } from '../../constants/types'
 import { useAppSelector } from '../../store/store.hook'
 import AttachFileTag from '../utilComponents/attachFileTag/AttachFileTag'
 import * as sxStyles from './EmailStructure.style'
@@ -16,13 +16,23 @@ const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
     <Box sx={sxStyles.mainBoxStyle}>
       <Typography sx={sxStyles.titleTypographyStyle}>{emailDetails ? 'Email Details' : 'New Message'}</Typography>
       <Box sx={sxStyles.selectContactBoxStyle}>
+        <TextField
+          margin='dense'
+          fullWidth
+          label={'From'}
+          value={emailDetails ? emailDetails.sender : appUser}
+          variant='outlined'
+          sx={sxStyles.subjectTextFieldStyle}
+          disabled={true}
+        />
         {emailDetails ? (
           <TextField
             margin='dense'
             fullWidth
-            label={emailDetails.sender}
+            label={'To'}
+            value={emailDetails.receiver}
             variant='outlined'
-            disabled={emailDetails ? true : false}
+            disabled={true}
           />
         ) : (
           <Autocomplete
@@ -52,7 +62,6 @@ const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
             )}
           />
         )}
-
         <TextField
           margin='dense'
           fullWidth
@@ -66,7 +75,7 @@ const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
           fullWidth
           variant='outlined'
           multiline
-          rows={17}
+          rows={10}
           sx={sxStyles.bodyTextFieldStyle}
           label={emailDetails ? emailDetails.body : ''}
           disabled={emailDetails ? true : false}

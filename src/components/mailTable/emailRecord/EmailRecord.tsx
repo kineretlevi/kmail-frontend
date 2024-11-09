@@ -2,12 +2,11 @@ import { Box, TableCell, TableRow, Tooltip, Typography } from '@mui/material'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 import dayjs from 'dayjs'
 import { emailStructure } from '../../../constants/types'
-import AttachFileTag from '../../utilComponents/attachFileTag/AttachFileTag'
-import * as sxStyles from '../muiTableStyle/MuiTable.style'
 import { useAppDispatch } from '../../../store/store.hook'
 import { updatePageState } from '../../../store/slices/page.slice'
 import { updateEmailDetailsState } from '../../../store/slices/emailDetails.slice'
-// import { useEffect } from 'react'
+import AttachFileTag from '../../utilComponents/attachFileTag/AttachFileTag'
+import * as sxStyles from '../muiTableStyle/MuiTable.style'
 
 interface IEmailRecordProps {
   email: emailStructure
@@ -20,9 +19,7 @@ const EmailRecord: React.FC<IEmailRecordProps> = ({ email }) => {
     dispatch(updateEmailDetailsState({ emailDetails: email }))
     dispatch(updatePageState({ page: 'Email' }))
   }
-  //   useEffect(() => {
-  //     console.log('emails in email record', email)
-  //   }, [])
+
   return (
     <TableRow key={email.id} sx={sxStyles.tableRecordRowStyle} onClick={handleEmailRowClick}>
       <TableCell sx={sxStyles.dateTableCellStyle}>

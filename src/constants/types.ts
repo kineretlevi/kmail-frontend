@@ -27,4 +27,6 @@ export type contactDetails = {
     createdAt: Date
 }
 
+export const appUser = "kineret@kmail.com"
+
 export type pageType = "All" | "Sent" | "Received" | "Contacts" | "New Email" | "Email"

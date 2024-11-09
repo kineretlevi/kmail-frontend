@@ -19,6 +19,11 @@ export const fetchAllEmailsData = (user: string, emails: IEmailsState) => {
         }
 
         try {
+             dispatch(updateUiState({
+                status: "pending",
+                title: "Pending",
+                message: "loading data..."
+            }))
             const emailsFromDb = await fetchAllEmails();
             const newEmails = {
                 allEmails: emailsFromDb.allEmailsRes,
@@ -42,74 +47,3 @@ export const fetchAllEmailsData = (user: string, emails: IEmailsState) => {
     }
 }
 
-// export const fetchSentEmailsData = (user: string, emails: IEmailsState) => {
-//     return async(dispatch: AppDispatch) => {
-//         const fetchAllSentEmails = async(): Promise<emailStructure[]> => {
-//             const res = await emailsRequests.getAllSentEmails(user);
-                        
-//             if (res.status !== 200) {
-//                 throw new Error('Could not fetch the emails user sent')
-//             }
-
-//             return res.data
-//         }
-
-//         try {
-//             const allSentEmailsOfUser = await fetchAllSentEmails();
-//             const newEmails = {
-//                 allEmails: emails.allEmails,
-//                 sentEmails: allSentEmailsOfUser,
-//                 receivedEmails: emails.receivedEmails
-//             }
-//             dispatch(updateSentEmails(newEmails))
-//             dispatch(updateUiState({
-//                 status: "success",
-//                 title: "Success!",
-//                 message: "Fetching all sent emails data succeeded"
-//             }))
-//         } catch (error) {
-//             dispatch(updateUiState({
-//                 status: "error",
-//                 title: "Error!",
-//                 message: "Fetching all sent emails data failed"
-//             }))
-
-//         }
-//     }
-// }
-
-// export const fetchReceivedEmailsData = (user: string, emails: IEmailsState) => {
-//     return async(dispatch: AppDispatch) => {
-//         const fetchAllReceivedEmails = async(): Promise<emailStructure[]> => {
-//             const res = await emailsRequests.getAllReceivedEmails(user);
-                        
-//             if (res.status !== 200) {
-//                 throw new Error('Could not fetch the emails user received')
-//             }
-
-//             return res.data
-//         }
-
-//         try {
-//             const allReceivedEmailsOfUser = await fetchAllReceivedEmails();
-//             const newEmails = {
-//                 allEmails: emails.allEmails,
-//                 sentEmails: emails.sentEmails,
-//                 receivedEmails: allReceivedEmailsOfUser
-//             }
-//             dispatch(updateSentEmails(newEmails))
-//             dispatch(updateUiState({
-//                 status: "success",
-//                 title: "Success!",
-//                 message: "Fetching all received emails data succeeded"
-//             }))
-//         } catch (error) {
-//             dispatch(updateUiState({
-//                 status: "error",
-//                 title: "Error!",
-//                 message: "Fetching all received emails data failed"
-//             }))
-
-//         }
-//     }
-// }

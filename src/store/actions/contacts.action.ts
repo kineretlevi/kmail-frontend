@@ -17,6 +17,11 @@ export const fetchContactsData = () => {
         }
 
         try {
+            dispatch(updateUiState({
+                status: "pending",
+                title: "Pending",
+                message: "loading data..."
+            }))
             const contactsData = await fetchContacts();
             dispatch(updateContactsState(contactsData))
             dispatch(updateUiState({

@@ -11,12 +11,6 @@ const ContentFactory: React.FC<IContentFactoryProps> = () => {
   const emailDetails = useAppSelector((state) => state.emailDetails.emailDetails)
   const { allEmails, receivedEmails, sentEmails } = useAppSelector((state) => state.emails)
 
-  useEffect(() => {
-    console.log('allEmails', allEmails)
-    console.log('receivedEmails', receivedEmails)
-    console.log('sentEmails', sentEmails)
-  })
-
   return page === 'All' ? (
     <EmailTable emails={allEmails} />
   ) : page === 'Sent' ? (
