@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useAppSelector } from '../../store/store.hook'
 import EmailTable from '../mailTable/emailTable/EmailTable'
 import ContactTable from '../mailTable/contactTable/ContactTable'

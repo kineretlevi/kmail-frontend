@@ -14,6 +14,10 @@ const store = configureStore({
     page: pageReducer,
     emailDetails: emailDetailsReducer
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    }),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -22,14 +22,12 @@ const emailsRequests = {
     getAllReceivedEmails: async (user: string)  => {
       return axiosInstance.get(`/api/get-emails/received/${user}`);
     },
-    addNewEmail: async (sender: string, receiver: string, subject: string, body: string, files: attachedFiles[])  => {
-      return axiosInstance.post('/api/add-email', 
+    addNewEmail: async (emailDetails: FormData)  => {
+      return axiosInstance.post('/api/add-email', emailDetails,
         {
-          sender: sender, 
-          receiver: receiver, 
-          subject: subject,
-          body: body,
-          files: files,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
         }
       );
     },

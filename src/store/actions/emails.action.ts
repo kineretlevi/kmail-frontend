@@ -1,12 +1,15 @@
 import { emailsRequests } from '../../api/axiosConfig'
-import { emailStructure } from '../../constants/types'
-import { IEmailsState, updateAllEmails } from '../slices/emails.slice'
+import { appUser, emailStructure } from '../../constants/types'
+import { updateAllEmails } from '../slices/emails.slice'
+import { updatePageState } from '../slices/page.slice'
 import { updateUiState } from '../slices/ui.slice'
 import { AppDispatch } from '../store'
 
-export const fetchAllEmailsData = (user: string, emails: IEmailsState) => {
+export const fetchAllEmailsData = (user: string) => {
     return async(dispatch: AppDispatch) => {
         const fetchAllEmails = async(): Promise<{[key: string]: emailStructure[]}> => {
+            console.log("in fetch all emails");
+            
             const allEmailsRes = await emailsRequests.getAllEmails(user);
             const allSentEmailRes = await emailsRequests.getAllSentEmails(user);
             const allReceivedEmailsRes = await emailsRequests.getAllReceivedEmails(user);
@@ -30,6 +33,7 @@ export const fetchAllEmailsData = (user: string, emails: IEmailsState) => {
                 sentEmails: emailsFromDb.allSentEmailRes,
                 receivedEmails: emailsFromDb.allReceivedEmailsRes
             }
+            console.log("newEmails", newEmails)
             dispatch(updateAllEmails(newEmails))
             dispatch(updateUiState({
                 status: "success",
@@ -47,3 +51,35 @@ export const fetchAllEmailsData = (user: string, emails: IEmailsState) => {
     }
 }
 
+export const postNewEmail = (emailDetails: FormData) => {
+    return async(dispatch: AppDispatch) => {
+        const postUserNewEmail = async() => {
+            const postEmail = await emailsRequests.addNewEmail(emailDetails);
+
+            if (postEmail.status !== 201 ) {
+                throw new Error('Could not post new email')
+            }
+
+            return postEmail
+        }
+
+        try {
+             dispatch(updateUiState({
+                status: "pending",
+                title: "Pending",
+                message: "loading data..."
+            }))
+            const res = await postUserNewEmail();
+            if (res.status === 201) {
+                dispatch(fetchAllEmailsData(appUser))
+                dispatch(updatePageState({ page: 'All' }))
+            }
+        } catch (error) {
+            dispatch(updateUiState({
+                status: "error",
+                title: "Error!",
+                message: "Fetching all emails data failed"
+            }))
+        }
+    }
+}

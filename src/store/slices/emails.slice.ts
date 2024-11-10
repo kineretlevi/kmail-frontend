@@ -19,8 +19,8 @@ const emailsSlice = createSlice({
    reducers: {
     updateAllEmails(state, action: PayloadAction<IEmailsState>) {
       state.allEmails = action.payload.allEmails
+      state.sentEmails = action.payload.sentEmails
       state.receivedEmails = action.payload.receivedEmails
-      action.payload.sentEmails = action.payload.sentEmails
     },
   },
 });

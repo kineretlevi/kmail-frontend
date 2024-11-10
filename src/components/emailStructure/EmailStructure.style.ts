@@ -3,6 +3,7 @@ const mainBoxStyle = {
     marginTop: '3vh',
     width: '83vw',
     backgroundColor: '#f8f9fa',
+    overflowY: "auto"
 }
 
 const titleTypographyStyle = {
@@ -49,6 +50,22 @@ const noAttachmentTypographyStyle = {
 const attachedFilesBtnStyles = {
     marginBottom: '20px'
 }
+
+const addIconStyle = {
+    marginTop: "10px",
+    width: "17px", 
+    height: "17px", 
+    marginLeft: "5px"
+}
+
+const clearFilesBtnStyle = {
+    marginRight: '30px'
+}
+
+const sendBtnStyle = {
+    marginBottom: "20px"
+}
+
 export {
     mainBoxStyle,
     titleTypographyStyle,
@@ -57,5 +74,8 @@ export {
     bodyTextFieldStyle,
     attachedFilesBox,
     noAttachmentTypographyStyle,
-    attachedFilesBtnStyles
+    attachedFilesBtnStyles,
+    addIconStyle,
+    clearFilesBtnStyle,
+    sendBtnStyle
 }
