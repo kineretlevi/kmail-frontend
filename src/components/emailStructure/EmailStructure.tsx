@@ -65,23 +65,31 @@ const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
     document.getElementById('fileInput')?.click()
   }
 
+  const convertToFormData = (files: attachedFiles[], additionalData: Record<string, string>): FormData => {
+    const formData = new FormData()
+
+    // Append each file
+    files.forEach((file) => {
+      const blob = new Blob([file.fileContent])
+      formData.append('files', blob, file.filename)
+    })
+
+    // Append additional fields
+    Object.entries(additionalData).forEach(([key, value]) => {
+      formData.append(key, value)
+    })
+
+    return formData
+  }
+
   const handleSendEmailClick = async () => {
-    dispatch(
-      postNewEmail(
-        newEmailDetails.sender,
-        newEmailDetails.receiver,
-        newEmailDetails.subject,
-        newEmailDetails.body,
-        newEmailDetails.attachedFile
-      )
-    )
-    dispatch(fetchAllEmailsData(appUser))
-    dispatch(updatePageState({ page: 'All' }))
+    const { attachedFile, ...additionalData } = newEmailDetails
+    const fd = convertToFormData(newEmailDetails.attachedFile, additionalData)
+    console.log('fd', fd)
+    dispatch(postNewEmail(fd))
   }
 
   useEffect(() => {
-    console.log('uploadedFiles', uploadedFiles)
-
     handleInputChange('attachedFile', uploadedFiles)
   }, [uploadedFiles])
   return (

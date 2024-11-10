@@ -1,6 +1,7 @@
 import { emailsRequests } from '../../api/axiosConfig'
-import { attachedFiles, emailStructure } from '../../constants/types'
+import { appUser, attachedFiles, emailStructure } from '../../constants/types'
 import { updateAllEmails } from '../slices/emails.slice'
+import { updatePageState } from '../slices/page.slice'
 import { updateUiState } from '../slices/ui.slice'
 import { AppDispatch } from '../store'
 
@@ -50,12 +51,10 @@ export const fetchAllEmailsData = (user: string) => {
     }
 }
 
-export const postNewEmail = (sender: string, receiver: string, subject: string, body: string, files: attachedFiles[]) => {
+export const postNewEmail = (emailDetails: FormData) => {
     return async(dispatch: AppDispatch) => {
         const postUserNewEmail = async() => {
-            console.log("files");
-            
-            const postEmail = await emailsRequests.addNewEmail(sender, receiver, subject, body, files);
+            const postEmail = await emailsRequests.addNewEmail(emailDetails);
 
             if (postEmail.status !== 201 ) {
                 throw new Error('Could not post new email')
@@ -70,12 +69,11 @@ export const postNewEmail = (sender: string, receiver: string, subject: string, 
                 title: "Pending",
                 message: "loading data..."
             }))
-            await postUserNewEmail();
-            // dispatch(updateUiState({
-            //     status: "success",
-            //     title: "Success!",
-            //     message: "Fetching all emails data succeeded"
-            // }))
+            const res = await postUserNewEmail();
+            if (res.status === 201) {
+                dispatch(fetchAllEmailsData(appUser))
+                dispatch(updatePageState({ page: 'All' }))
+            }
         } catch (error) {
             dispatch(updateUiState({
                 status: "error",
