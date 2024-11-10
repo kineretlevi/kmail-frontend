@@ -9,6 +9,7 @@ const initialState: IContactsState = {
   contacts: [],
 };
 
+// Definition of redux slice of the contacts
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,

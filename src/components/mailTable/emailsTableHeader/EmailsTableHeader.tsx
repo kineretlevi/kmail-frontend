@@ -3,6 +3,7 @@ import * as sxStyles from '../muiTableStyle/MuiTable.style'
 
 interface IEmailsTableHeaderProps {}
 
+// Component of the emails table header details.
 const EmailsTableHeader: React.FC<IEmailsTableHeaderProps> = () => {
   return (
     <TableRow sx={sxStyles.tableRowStyle}>

@@ -5,7 +5,7 @@ import uiReducer from './slices/ui.slice';
 import pageReducer from './slices/page.slice';
 import emailDetailsReducer from './slices/emailDetails.slice';
 
-
+// Configure the redux store.
 const store = configureStore({
   reducer: {
     contacts: contactsReducer,

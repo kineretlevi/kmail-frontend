@@ -13,9 +13,9 @@ import * as sxStyles from './MainPage.style'
 
 interface IMainPageProps {}
 
+// Component to manage and display all the pages in the app.
 const MainPage: React.FC<IMainPageProps> = ({}) => {
   const dispatch = useAppDispatch()
-  const emails = useAppSelector((state) => state.emails)
   const ui = useAppSelector((state) => state.ui)
 
   useEffect(() => {

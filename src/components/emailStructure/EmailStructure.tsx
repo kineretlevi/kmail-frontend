@@ -4,11 +4,9 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded'
 import AddRoundedIcon from '@mui/icons-material/AddRounded'
 import { appEmailStructure, appUser, attachedFiles, emailStructure } from '../../constants/types'
 import { useAppDispatch, useAppSelector } from '../../store/store.hook'
+import { postNewEmail } from '../../store/actions/emails.action'
 import AttachFileTag from '../utilComponents/attachFileTag/AttachFileTag'
 import * as sxStyles from './EmailStructure.style'
-import { emailsRequests } from '../../api/axiosConfig'
-import { fetchAllEmailsData, postNewEmail } from '../../store/actions/emails.action'
-import { updatePageState } from '../../store/slices/page.slice'
 
 interface IEmailStructureProps {
   emailDetails?: emailStructure
@@ -22,6 +20,7 @@ const defaultEmailValues: appEmailStructure = {
   attachedFile: [],
 }
 
+// Component for new email and view email
 const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
   const dispatch = useAppDispatch()
   const contacts = useAppSelector((state) => state.contacts.contacts)
@@ -92,6 +91,7 @@ const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
   useEffect(() => {
     handleInputChange('attachedFile', uploadedFiles)
   }, [uploadedFiles])
+
   return (
     <Box sx={sxStyles.mainBoxStyle}>
       <Typography sx={sxStyles.titleTypographyStyle}>{emailDetails ? 'Email Details' : 'New Message'}</Typography>

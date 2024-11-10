@@ -9,6 +9,7 @@ const initialState: IPageState = {
   page: "All"
 };
 
+// Definition of redux slice of the page that need to be displayed.
 const pageSlice = createSlice({
   name: 'page',
   initialState,

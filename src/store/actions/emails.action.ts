@@ -5,11 +5,12 @@ import { updatePageState } from '../slices/page.slice'
 import { updateUiState } from '../slices/ui.slice'
 import { AppDispatch } from '../store'
 
+/* Redux thunk to enable unpure function for fetching data from server to redux store.
+*  In this case fetching all the emails 
+*/
 export const fetchAllEmailsData = (user: string) => {
     return async(dispatch: AppDispatch) => {
-        const fetchAllEmails = async(): Promise<{[key: string]: emailStructure[]}> => {
-            console.log("in fetch all emails");
-            
+        const fetchAllEmails = async(): Promise<{[key: string]: emailStructure[]}> => {            
             const allEmailsRes = await emailsRequests.getAllEmails(user);
             const allSentEmailRes = await emailsRequests.getAllSentEmails(user);
             const allReceivedEmailsRes = await emailsRequests.getAllReceivedEmails(user);
@@ -51,6 +52,9 @@ export const fetchAllEmailsData = (user: string) => {
     }
 }
 
+/* Redux thunk to enable unpure function for posting data to server.
+*  In this case posting new email
+*/
 export const postNewEmail = (emailDetails: FormData) => {
     return async(dispatch: AppDispatch) => {
         const postUserNewEmail = async() => {

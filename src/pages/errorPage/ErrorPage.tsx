@@ -3,6 +3,7 @@ import * as sxStyles from './ErrorPage.style'
 
 interface IErrorPageProps {}
 
+// Page For application Error cases.
 const ErrorPage: React.FC<IErrorPageProps> = () => {
   return (
     <Box sx={sxStyles.boxStyle}>

@@ -5,6 +5,7 @@ import EmailStructure from '../emailStructure/EmailStructure'
 
 interface IContentFactoryProps {}
 
+// Factory component to generate the relevant component according to the page.
 const ContentFactory: React.FC<IContentFactoryProps> = () => {
   const page = useAppSelector((state) => state.page.page)
   const emailDetails = useAppSelector((state) => state.emailDetails.emailDetails)

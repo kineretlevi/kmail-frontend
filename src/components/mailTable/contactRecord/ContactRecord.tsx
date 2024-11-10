@@ -8,6 +8,7 @@ interface IContactRecordProps {
   contact: contactDetails
 }
 
+// Component of the contact table record details.
 const ContactRecord: React.FC<IContactRecordProps> = ({ contact }) => {
   return (
     <TableRow key={contact.id} sx={sxStyles.tableRecordRowStyle}>

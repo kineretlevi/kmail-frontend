@@ -17,6 +17,7 @@ const initialState: IEmailDetailsState = {
   }
 };
 
+// Definition of redux slice of the selected email details - uses for showing email data.
 const emailDetailsSlice = createSlice({
   name: 'emailDetails',
   initialState,
