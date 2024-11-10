@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Table, TableBody, TableContainer, TableHead, Paper, TableCell, Typography, TableRow } from '@mui/material'
 import { emailStructure } from '../../../constants/types'
 import EmailsTableHeader from '../emailsTableHeader/EmailsTableHeader'
@@ -9,6 +8,7 @@ interface IEmailTableProps {
   emails: emailStructure[]
 }
 
+// Component of emails table using mui table.
 const EmailTable: React.FC<IEmailTableProps> = ({ emails }) => {
   return (
     <TableContainer component={Paper} sx={sxStyles.tableContainerStyle}>

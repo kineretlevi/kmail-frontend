@@ -4,6 +4,9 @@ import { updateContactsState } from '../slices/contacts.slice'
 import { updateUiState } from '../slices/ui.slice'
 import { AppDispatch } from '../store'
 
+/* Redux thunk to enable unpure function for fetching data from server to redux store.
+*  In this case fetching all the contacts 
+*/
 export const fetchContactsData = () => {
     return async(dispatch: AppDispatch) => {
         const fetchContacts = async(): Promise<contactDetails[]> => {

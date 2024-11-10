@@ -7,6 +7,7 @@ import * as sxStyles from '../muiTableStyle/MuiTable.style'
 
 interface IContactTableProps {}
 
+// Component of contacts table using mui table.
 const ContactTable: React.FC<IContactTableProps> = () => {
   const contacts = useAppSelector((state) => state.contacts.contacts)
 

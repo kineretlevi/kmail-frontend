@@ -12,6 +12,7 @@ const initialState: IUiState = {
   message: "application is in pending state"
 };
 
+// Definition of redux slice of the ui for adjusting the ui according to the state of the requests to the server.
 const uiSlice = createSlice({
   name: 'ui',
   initialState,

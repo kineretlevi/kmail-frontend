@@ -13,6 +13,7 @@ const initialState: IEmailsState = {
   receivedEmails: []
 };
 
+// Definition of redux slice of the all the emails, sent emails and received emails.
 const emailsSlice = createSlice({
   name: 'emails',
   initialState,

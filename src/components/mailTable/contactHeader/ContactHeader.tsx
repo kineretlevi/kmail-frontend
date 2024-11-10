@@ -3,10 +3,11 @@ import * as sxStyles from '../muiTableStyle/MuiTable.style'
 
 interface IContactTableHeaderProps {}
 
+// Component of the contacts table header details.
 const ContactTableHeader: React.FC<IContactTableHeaderProps> = () => {
   return (
     <TableRow sx={sxStyles.tableRowStyle}>
-      {/* For icon */}
+      {/* Place for icon */}
       <TableCell></TableCell>
       <TableCell>Name</TableCell>
       <TableCell>Added At</TableCell>

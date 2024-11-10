@@ -12,6 +12,7 @@ interface IEmailRecordProps {
   email: emailStructure
 }
 
+// Component of the email table record details.
 const EmailRecord: React.FC<IEmailRecordProps> = ({ email }) => {
   const dispatch = useAppDispatch()
 
@@ -26,7 +27,6 @@ const EmailRecord: React.FC<IEmailRecordProps> = ({ email }) => {
       sx={{
         ...sxStyles.tableRecordRowStyle,
         '&:hover': {
-          fontWeight: 'bold', // Make text bold on hover
           height: '75px',
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
           backgroundColor: '#f8f9fa',

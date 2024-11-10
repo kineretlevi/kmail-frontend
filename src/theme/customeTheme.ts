@@ -1,5 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
+// Create Mui theme for adjusting the component colors in the app.
 const theme = createTheme({
   direction: 'rtl', 
   palette: {

@@ -3,6 +3,7 @@ import LoadingGif from '../../assets/loading.gif'
 import * as sxStyles from './LoadingPage.style'
 
 interface ILoadingPageProps {}
+// Page for loading when petchig data
 const LoadingPage: React.FC<ILoadingPageProps> = () => {
   return (
     <Box sx={sxStyles.boxWrapperStyle}>
