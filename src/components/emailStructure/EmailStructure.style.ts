@@ -49,6 +49,18 @@ const noAttachmentTypographyStyle = {
 const attachedFilesBtnStyles = {
     marginBottom: '20px'
 }
+
+const addIconStyle = {
+    marginTop: "10px",
+    width: "17px", 
+    height: "17px", 
+    marginLeft: "5px"
+}
+
+const clearFilesBtnStyle = {
+    marginRight: '30px'
+}
+
 export {
     mainBoxStyle,
     titleTypographyStyle,
@@ -57,5 +69,7 @@ export {
     bodyTextFieldStyle,
     attachedFilesBox,
     noAttachmentTypographyStyle,
-    attachedFilesBtnStyles
+    attachedFilesBtnStyles,
+    addIconStyle,
+    clearFilesBtnStyle
 }

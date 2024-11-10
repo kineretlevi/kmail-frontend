@@ -8,10 +8,18 @@ export type emailStructure = {
     attachedFile: attachedFiles[]
 }
 
+export type appEmailStructure = {
+    sender: string,
+    receiver: string,
+    subject: string,
+    body: string,
+    attachedFile: attachedFiles[]
+}
+
 export type attachedFiles = {
     id: string,
     filename: string,
-    fileContent: Buffer
+    fileContent: ArrayBuffer
 }
 
 export type userDetailes = {

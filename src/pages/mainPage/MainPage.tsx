@@ -22,7 +22,7 @@ const MainPage: React.FC<IMainPageProps> = ({}) => {
     // Function to fetch all the contacts and update them in redux
     dispatch(fetchContactsData())
     // Function to fetch all the user emails and update them in redux
-    dispatch(fetchAllEmailsData(appUser, emails))
+    dispatch(fetchAllEmailsData(appUser))
   }, [dispatch])
   return (
     <main>

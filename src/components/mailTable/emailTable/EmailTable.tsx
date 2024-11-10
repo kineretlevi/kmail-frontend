@@ -10,9 +10,6 @@ interface IEmailTableProps {
 }
 
 const EmailTable: React.FC<IEmailTableProps> = ({ emails }) => {
-  useEffect(() => {
-    console.log('emails', emails)
-  })
   return (
     <TableContainer component={Paper} sx={sxStyles.tableContainerStyle}>
       <Table>
