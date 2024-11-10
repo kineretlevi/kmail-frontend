@@ -215,7 +215,6 @@ const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
             <Button variant='outlined' onClick={handleUploadClick} sx={sxStyles.attachedFilesBtnStyles}>
               Attach Files
             </Button>
-            {/* Hidden file input */}
             <input
               id='fileInput'
               type='file'
@@ -225,7 +224,11 @@ const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
             />
           </>
         )}
-        <Button variant='contained' disabled={emailDetails ? true : false} onClick={handleSendEmailClick}>
+        <Button
+          variant='contained'
+          sx={sxStyles.sendBtnStyle}
+          disabled={emailDetails ? true : false}
+          onClick={handleSendEmailClick}>
           Send
         </Button>
       </Box>

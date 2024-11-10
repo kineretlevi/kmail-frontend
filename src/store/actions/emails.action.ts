@@ -1,5 +1,5 @@
 import { emailsRequests } from '../../api/axiosConfig'
-import { appUser, attachedFiles, emailStructure } from '../../constants/types'
+import { appUser, emailStructure } from '../../constants/types'
 import { updateAllEmails } from '../slices/emails.slice'
 import { updatePageState } from '../slices/page.slice'
 import { updateUiState } from '../slices/ui.slice'

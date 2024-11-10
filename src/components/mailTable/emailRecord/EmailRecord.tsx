@@ -21,7 +21,18 @@ const EmailRecord: React.FC<IEmailRecordProps> = ({ email }) => {
   }
 
   return (
-    <TableRow key={email.id} sx={sxStyles.tableRecordRowStyle} onClick={handleEmailRowClick}>
+    <TableRow
+      key={email.id}
+      sx={{
+        ...sxStyles.tableRecordRowStyle,
+        '&:hover': {
+          fontWeight: 'bold', // Make text bold on hover
+          height: '75px',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+          backgroundColor: '#f8f9fa',
+        },
+      }}
+      onClick={handleEmailRowClick}>
       <TableCell sx={sxStyles.dateTableCellStyle}>
         {dayjs(email.createdAt.toLocaleString()).format('DD-MM-YYYY HH:mm:ss')}
       </TableCell>
