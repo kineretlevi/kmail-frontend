@@ -1,24 +1,23 @@
 import * as React from 'react'
-import { Box, IconButton } from '@mui/material'
+import { Box } from '@mui/material'
 import Divider from '@mui/material/Divider'
 import Paper from '@mui/material/Paper'
 import InboxRoundedIcon from '@mui/icons-material/InboxRounded'
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import PermContactCalendarRoundedIcon from '@mui/icons-material/PermContactCalendarRounded'
 import ModeEditOutlineRoundedIcon from '@mui/icons-material/ModeEditOutlineRounded'
 import AllInboxIcon from '@mui/icons-material/AllInbox'
-import CustomeBtn from '../utilComponents/customeBtn/CustomeBtn'
-import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/store.hook'
 import { pageType } from '../../constants/types'
 import { updatePageState } from '../../store/slices/page.slice'
+import CustomeBtn from '../utilComponents/customeBtn/CustomeBtn'
 import * as sxStyles from './SideBar.style'
 
 interface ISideBarProps {}
 
 const SideBar: React.FC<ISideBarProps> = () => {
   const dispatch = useAppDispatch()
+  const page = useAppSelector((state) => state.page.page)
 
   const handleCustomeBtnClick = (pageType: pageType) => {
     dispatch(updatePageState({ page: pageType }))
@@ -26,11 +25,7 @@ const SideBar: React.FC<ISideBarProps> = () => {
 
   return (
     <Paper sx={sxStyles.paperStyle}>
-      <Box sx={sxStyles.boxStyle}>
-        <IconButton sx={sxStyles.iconBtnStyle}>
-          <ArrowBackRoundedIcon sx={sxStyles.arrowBackIconStyle} />
-        </IconButton>
-      </Box>
+      <Box sx={sxStyles.boxStyle}></Box>
       <Divider />
       <CustomeBtn
         variant={'contained'}
@@ -43,7 +38,7 @@ const SideBar: React.FC<ISideBarProps> = () => {
       <Divider />
       <CustomeBtn
         variant={'outlined'}
-        styleObj={sxStyles.btnStyle}
+        styleObj={page === 'All' ? sxStyles.clickedBtnStyle : sxStyles.btnStyle}
         title={'All Messages'}
         icon={<AllInboxIcon />}
         type={'All'}
@@ -52,7 +47,7 @@ const SideBar: React.FC<ISideBarProps> = () => {
       <Divider />
       <CustomeBtn
         variant={'outlined'}
-        styleObj={sxStyles.btnStyle}
+        styleObj={page === 'Received' ? sxStyles.clickedBtnStyle : sxStyles.btnStyle}
         title={'Recieved Messages'}
         icon={<InboxRoundedIcon />}
         type={'Received'}
@@ -61,7 +56,7 @@ const SideBar: React.FC<ISideBarProps> = () => {
       <Divider />
       <CustomeBtn
         variant={'outlined'}
-        styleObj={sxStyles.btnStyle}
+        styleObj={page === 'Sent' ? sxStyles.clickedBtnStyle : sxStyles.btnStyle}
         title={'Sent Messages'}
         icon={<SendRoundedIcon />}
         type={'Sent'}
@@ -70,7 +65,7 @@ const SideBar: React.FC<ISideBarProps> = () => {
       <Divider />
       <CustomeBtn
         variant={'outlined'}
-        styleObj={sxStyles.btnStyle}
+        styleObj={page === 'Contacts' ? sxStyles.clickedBtnStyle : sxStyles.btnStyle}
         title={'contacts'}
         icon={<PermContactCalendarRoundedIcon />}
         type={'Contacts'}

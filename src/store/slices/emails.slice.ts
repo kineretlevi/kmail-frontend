@@ -22,17 +22,6 @@ const emailsSlice = createSlice({
       state.receivedEmails = action.payload.receivedEmails
       action.payload.sentEmails = action.payload.sentEmails
     },
-    // updateSentEmails(state, action: PayloadAction<IEmailsState>) {
-    //   state.allEmails = action.payload.allEmails
-    //   state.receivedEmails = action.payload.receivedEmails
-    //   action.payload.sentEmails = action.payload.sentEmails
-    // },
-    // updateReceivedEmails(state, action: PayloadAction<IEmailsState>) {
-    //   state.allEmails = action.payload.allEmails
-    //   state.receivedEmails = action.payload.receivedEmails
-    //   action.payload.sentEmails = action.payload.sentEmails
-    // },
-
   },
 });
 
