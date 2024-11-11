@@ -1,11 +1,13 @@
 import { theme } from "../../theme/customeTheme"
 
+// Using MUI's responsive style system.
 const paperStyle = {
-    width: "13vw", 
-    maxWidth: '100%', 
-    height: "90vh", 
-    marginTop: "3vh", 
-    marginLeft: "2vw",
+    width: { xs: '65vw', sm: '45vw', md: '20vw' }, 
+    maxWidth: '100%',
+    height: { xs: '86.5vh', md: '89.9vh' },
+    marginTop: { xs: '3vh', md: '3vh' },
+    marginLeft: { xs: 0, md: '2vw' },
+    padding: { xs: 2, md: 0 },
 }
 
 const boxStyle = {
@@ -20,28 +22,20 @@ const iconBtnStyle = {
 }
 
 const btnStyle = {
-    marginTop: '30px',
-    marginBottom: '30px',
-    width: "90%", 
-    height: "8.2vh", 
+    marginTop: '20px',
+    marginBottom: '20px',
+    width: "90%",
+    height: { xs: '6vh', md: '8.2vh' }, 
     borderRadius: "30px",
     justifyContent: 'flex-start',
-    paddingLeft: 2, 
-    gap: 2, 
-    fontSize: "0.8rem"
+    paddingLeft: { xs: 1, md: 2 },
+    gap: { xs: 1, md: 2 },
+    fontSize: { xs: "0.7rem", md: "0.8rem" },
 }
 
 const clickedBtnStyle = {
+    ...btnStyle,
     color: theme.palette.info.main,
-    marginTop: '30px',
-    marginBottom: '30px',
-    width: "90%", 
-    height: "8.2vh", 
-    borderRadius: "30px",
-    justifyContent: 'flex-start',
-    paddingLeft: 2, 
-    gap: 2, 
-    fontSize: "0.8rem"
 }
 
 const arrowBackIconStyle = {

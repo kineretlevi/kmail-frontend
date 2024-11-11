@@ -20,14 +20,18 @@ const defaultEmailValues: appEmailStructure = {
   attachedFile: [],
 }
 
+const errorMessageMustHaveReceiver = 'Error, you must enter receiver'
+
 // Component for new email and view email
 const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
   const dispatch = useAppDispatch()
   const contacts = useAppSelector((state) => state.contacts.contacts)
+  const [error, setError] = useState<string>('')
   const [newEmailDetails, setNewEmailDetails] = useState<appEmailStructure>(defaultEmailValues)
   const [uploadedFiles, setUploadedFiles] = useState<attachedFiles[]>([])
 
   const handleInputChange = (identifier: string, value: string | attachedFiles[]) => {
+    setError('')
     setNewEmailDetails((prevDetails) => ({
       ...prevDetails,
       [identifier]: value,
@@ -82,10 +86,14 @@ const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
   }
 
   const handleSendEmailClick = async () => {
-    const { attachedFile, ...additionalData } = newEmailDetails
-    const fd = convertToFormData(newEmailDetails.attachedFile, additionalData)
-    console.log('fd', fd)
-    dispatch(postNewEmail(fd))
+    if (newEmailDetails.receiver !== '') {
+      const { attachedFile, ...additionalData } = newEmailDetails
+      const fd = convertToFormData(newEmailDetails.attachedFile, additionalData)
+      console.log('fd', fd)
+      dispatch(postNewEmail(fd))
+    } else {
+      setError(errorMessageMustHaveReceiver)
+    }
   }
 
   useEffect(() => {
@@ -115,39 +123,42 @@ const EmailStructure: React.FC<IEmailStructureProps> = ({ emailDetails }) => {
             disabled={true}
           />
         ) : (
-          <Autocomplete
-            disablePortal
-            options={contacts}
-            getOptionLabel={(option) => option.name}
-            onChange={(_event, newValue) => {
-              handleInputChange('receiver', newValue!.name)
-            }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label='Select a Contact'
-                variant='outlined'
-                InputProps={{
-                  ...params.InputProps,
-                  startAdornment: (
-                    <Box display='flex' alignItems='center' gap={1}>
-                      <AccountCircleRoundedIcon color='info' />
-                    </Box>
-                  ),
-                }}
-              />
-            )}
-            renderOption={(props, option) => {
-              // React requires the key prop is to be passed directly to JSX elements rather than spread through the props object
-              const { key, ...otherProps } = props
-              return (
-                <Box key={key} component='li' {...otherProps} display='flex' alignItems='center' gap={1}>
-                  <AccountCircleRoundedIcon color='info' />
-                  <Typography>{option.name}</Typography>
-                </Box>
-              )
-            }}
-          />
+          <>
+            <Autocomplete
+              disablePortal
+              options={contacts}
+              getOptionLabel={(option) => option.name}
+              onChange={(_event, newValue) => {
+                handleInputChange('receiver', newValue!.name)
+              }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label='Select a Contact'
+                  variant='outlined'
+                  InputProps={{
+                    ...params.InputProps,
+                    startAdornment: (
+                      <Box display='flex' alignItems='center' gap={1}>
+                        <AccountCircleRoundedIcon color='info' />
+                      </Box>
+                    ),
+                  }}
+                />
+              )}
+              renderOption={(props, option) => {
+                // React requires the key prop is to be passed directly to JSX elements rather than spread through the props object
+                const { key, ...otherProps } = props
+                return (
+                  <Box key={key} component='li' {...otherProps} display='flex' alignItems='center' gap={1}>
+                    <AccountCircleRoundedIcon color='info' />
+                    <Typography>{option.name}</Typography>
+                  </Box>
+                )
+              }}
+            />
+            {error.length > 0 && <Typography color='error'>{error}</Typography>}
+          </>
         )}
         <TextField
           margin='dense'
